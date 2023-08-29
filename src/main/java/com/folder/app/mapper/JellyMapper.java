@@ -10,7 +10,6 @@ import com.folder.app.dto.JellyDTO;
 @Mapper
 public interface JellyMapper{
 
-  @Select("select * from jelly_info")
+@Select("select * from jelly_info")
   public List<JellyDTO> jellyFindAll();
-
 }

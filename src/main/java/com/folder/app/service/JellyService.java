@@ -22,6 +22,7 @@ public class JellyService {
         if(resultList != null){
             jrDto.setState(true);
             jrDto.setResult(resultList);
+            // System.out.println(resultList);
         } else {
             jrDto.setState(false);
         }

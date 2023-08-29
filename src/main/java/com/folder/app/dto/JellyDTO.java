@@ -4,12 +4,15 @@ import lombok.Data;
 
 @Data
 public class JellyDTO {
-    private Number jidx; //젤리번호
+    private Integer jidx; //젤리번호
     private String jName; //젤리이름
-    private String jDetail;
+    private String jDetail; //젤리상세정보
     private String jImg;
-    private Number jSweet;
-    private Number jSour;
-    private Number jSoft;
-    private Number jHard;
+    private Double jCalorie;
+    private Double jProvince;
+    private Double jSaturatedFat;
+    private Double jCarbohydrate;
+    private Double jSugars;
+    private Double jProtein;
+    private Double jSalt;
 }
