@@ -11,12 +11,20 @@ import com.folder.app.dto.ReviewDTO;
 public class ReviewService {
     @Autowired ReviewDAO uDao;
 
+    //후기 저장
     public Object save(ReviewDTO rDto){
-        System.out.println("===");
-        System.out.println(rDto);
-
         uDao.save(rDto);
-
         return rDto;
+    }
+
+    //후기 조회
+    public Object reviewFindAll(){
+        return uDao.jellyFindAll();
+    }
+
+    //후기 삭제
+    public Object delete(int id){
+        uDao.delete(id);
+        return "삭제되었습니다";
     }
 }
