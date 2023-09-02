@@ -51,11 +51,11 @@ public class DataController {
 
     //후기삭제
     @DeleteMapping("/delete")
-    public Object delete(@RequestParam("id") int id){
+    public Object delete(@RequestParam(name = "id") int id){
         System.out.println(id);
         return rService.delete(id);
     }
-    
+    /*
     //카카오인증 @ResponseBody
     @GetMapping("/auth/kakao/callback")
     public String kakaoCallback(String code){
@@ -90,7 +90,8 @@ public class DataController {
             kakaoTokenRequest, //HttpEntity오브젝트
             String.class
         );
-
         return response.getBody();
+         
     }
+    */
 }

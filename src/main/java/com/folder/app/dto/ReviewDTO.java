@@ -11,5 +11,5 @@ public class ReviewDTO {
     private String Content; 
     private Integer JIdx;
     private Integer Star;
-    private Date Date;
+    private Date Created_at;
 }
