@@ -12,9 +12,9 @@ public class ReviewService {
     @Autowired ReviewDAO uDao;
 
     //후기 저장
-    public Object save(ReviewDTO rDto){
+    public String save(ReviewDTO rDto){
         uDao.save(rDto);
-        return rDto;
+        return "후기가 저장되었습니다.";
     }
 
     //후기 조회
@@ -26,5 +26,11 @@ public class ReviewService {
     public Object delete(int id){
         uDao.delete(id);
         return "삭제되었습니다";
+    }
+
+    //후기 수정
+    public String editById(ReviewDTO rDto){
+        uDao.editById(rDto);
+        return "후기가 수정되었습니다.";
     }
 }

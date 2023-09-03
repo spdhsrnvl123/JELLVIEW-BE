@@ -13,7 +13,7 @@ import com.folder.app.mapper.ReviewMapper;
 public class ReviewDAO {
     @Autowired ReviewMapper rMapper;
 
-    public int save(ReviewDTO rDto){
+    public Object save(ReviewDTO rDto){
         System.out.println(rDto);
         return rMapper.save(rDto);
     }
@@ -25,4 +25,11 @@ public class ReviewDAO {
     public int delete(int id){
         return rMapper.delete(id);
     }
+
+    public Object editById(ReviewDTO rDto){
+    System.out.println(rDto);
+    return rMapper.editById(rDto);
+    // return null;
+    }
+
 }

@@ -66,12 +66,12 @@ public class DataController {
     }
 
     // 후기수정
-    @PostMapping("/edit")
-    public Object edit(@RequestBody ReviewDTO rDto) {
+    @PostMapping("/editById")
+    public String editById(@RequestBody ReviewDTO rDto){
         System.out.println(rDto);
-        return rService.edit(rDto);
-        // return null;
+        return rService.editById(rDto);
     }
+
 
     // 카카오인증 @ResponseBody
     @GetMapping("/auth/kakao/callback")

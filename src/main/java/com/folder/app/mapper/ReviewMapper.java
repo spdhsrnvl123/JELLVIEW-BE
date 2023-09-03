@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.folder.app.dto.ReviewDTO;
 
@@ -22,4 +24,8 @@ public interface ReviewMapper {
     //삭제
     @Delete("Delete from jelly_review where ridx=#{id}")
     public int delete(int no);
+
+    //수정
+    @Update("update jelly_review set Title = #{Title}, Content = #{Content}, Star = #{Star} where RIdx = #{RIdx}")
+    public int editById(ReviewDTO rDto);
 }
