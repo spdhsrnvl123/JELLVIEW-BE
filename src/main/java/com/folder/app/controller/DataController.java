@@ -24,10 +24,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.folder.app.dto.JellyResultDTO;
+import com.folder.app.dto.KakaoInfo;
 import com.folder.app.dto.KakaoProfile;
 import com.folder.app.dto.OAuthToken;
 import com.folder.app.dto.ReviewDTO;
 import com.folder.app.service.JellyService;
+import com.folder.app.service.KakaoService;
 import com.folder.app.service.ReviewService;
 
 @CrossOrigin(origins = "http://localhost:5001")
@@ -72,6 +74,9 @@ public class DataController {
         System.out.println(rDto);
         return rService.editById(rDto);
     }
+
+    @Autowired
+    KakaoService kakaoService;
 
     // 카카오인증
     // 프론트에서 인가코드를 받아옴, 받은 인가코드로 카카오서버에서 액세스 토큰 받아와서 반환
@@ -128,7 +133,6 @@ public class DataController {
                 HttpMethod.POST,
                 kakaoProfileRequest, // HttpEntity오브젝트
                 String.class);
-                
                 // ----------
 
     // 멤버변수에 넣어주기
@@ -144,11 +148,31 @@ public class DataController {
      e.printStackTrace();
      } // OAuthToken.class response.getBody()를 넣어준다.
      
-     //User 오브젝트 : username, password, email
-     System.out.println("카카오 아이디(번호) : " + kakaoProfile.getId());
-     System.out.println("카카오 이메일 : " +
-     kakaoProfile.getKakao_account().getEmail());
-        return kakaoProfile;
+    String email = kakaoProfile.getKakao_account().getEmail();
+    String nickname = kakaoProfile.getProperties().nickname;
+    String profile_img = kakaoProfile.getProperties().profile_image;
+
+
+    //kakaoInfo DTO에 email,nickname,profile_img 값 집어넣기
+    KakaoInfo kakaoInfo = new KakaoInfo();
+    System.out.println(kakaoInfo);
+
+    kakaoInfo.setEmail(email);
+    kakaoInfo.setNickname(nickname);
+    kakaoInfo.setProfile_img(profile_img);
+
+    System.out.println(kakaoInfo);
+
+    // System.out.println("이메일 : " + email);
+    // System.out.println("이름 : " + nickname);
+    // System.out.println("프로필 이미지 : " + profile_img);
+    
+
+    kakaoService.save(kakaoInfo);
+
+     return null;
+     // return kakaoProfile;
+
     }
 }
 /*

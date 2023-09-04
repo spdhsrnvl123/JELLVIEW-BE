@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.folder.app.dto.JellyDTO;
+import com.folder.app.dto.KakaoInfo;
 import com.folder.app.dto.ReviewDTO;
 import com.folder.app.mapper.ReviewMapper;
 
