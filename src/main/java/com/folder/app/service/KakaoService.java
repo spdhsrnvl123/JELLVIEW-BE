@@ -10,12 +10,16 @@ import com.folder.app.dto.KakaoProfile;
 @Service
 public class KakaoService {
 
-    @Autowired KakaoDAO kakaoDAO;
+    @Autowired
+    KakaoDAO kakaoDAO;
 
-    public KakaoInfo save(KakaoInfo kakaoInfo){
-        System.out.println(kakaoInfo);
-
+    public KakaoInfo save(KakaoInfo kakaoInfo) {
         kakaoDAO.save(kakaoInfo);
         return null;
+    }
+
+    public int findInfo(KakaoInfo kakaoInfo) {
+        // kakaoDAO.findInfo(kakaoInfo);
+        return kakaoDAO.findInfo(kakaoInfo);
     }
 }

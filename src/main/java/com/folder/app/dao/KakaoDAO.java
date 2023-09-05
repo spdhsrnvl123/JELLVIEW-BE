@@ -12,7 +12,12 @@ public class KakaoDAO {
     @Autowired KakaoMapper kMapper;
 
     public Object save(KakaoInfo kakaoInfo) {
-        System.out.println(kakaoInfo);
         return kMapper.save(kakaoInfo);
+    }
+    
+    public int findInfo(KakaoInfo kakaoInfo) {
+            // int rowCount = kMapper.findInfo(kakaoInfo);
+            // System.out.println(rowCount);
+        return kMapper.findInfo(kakaoInfo);
     }
 }

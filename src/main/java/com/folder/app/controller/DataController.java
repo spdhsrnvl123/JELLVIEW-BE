@@ -28,6 +28,7 @@ import com.folder.app.dto.KakaoInfo;
 import com.folder.app.dto.KakaoProfile;
 import com.folder.app.dto.OAuthToken;
 import com.folder.app.dto.ReviewDTO;
+import com.folder.app.mapper.KakaoMapper;
 import com.folder.app.service.JellyService;
 import com.folder.app.service.KakaoService;
 import com.folder.app.service.ReviewService;
@@ -161,18 +162,22 @@ public class DataController {
     kakaoInfo.setNickname(nickname);
     kakaoInfo.setProfile_img(profile_img);
 
-    System.out.println(kakaoInfo);
+    // System.out.println(kakaoInfo);
 
     // System.out.println("이메일 : " + email);
     // System.out.println("이름 : " + nickname);
     // System.out.println("프로필 이미지 : " + profile_img);
     
 
-    kakaoService.save(kakaoInfo);
-
-     return null;
+    if(kakaoService.findInfo(kakaoInfo) == 0){
+        System.out.println("데이터베이스 저장된 정보가 없어요 저장하고 유저정보 줄게요");
+        kakaoService.save(kakaoInfo);
+        return kakaoInfo;
+    }else{
+        System.out.println("데이터베이스 회원정보가 있네요 유저저정보 줄게요!");
+        return kakaoInfo;
+    }
      // return kakaoProfile;
-
     }
 }
 /*
