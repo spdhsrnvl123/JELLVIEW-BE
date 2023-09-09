@@ -14,7 +14,7 @@ import com.folder.app.dto.ReviewDTO;
 @Mapper
 public interface ReviewMapper {
     //저장
-    @Insert("insert into jelly_review (Title, Content, JIdx, Star) value (#{Title},#{Content},#{JIdx},#{Star})")
+    @Insert("insert into jelly_review (Title, Content, JIdx, Star, Email) value (#{Title},#{Content},#{JIdx},#{Star},#{Email})")
     public int save(ReviewDTO rDto);
 
     //조회
@@ -28,4 +28,8 @@ public interface ReviewMapper {
     //수정
     @Update("update jelly_review set Title = #{Title}, Content = #{Content}, Star = #{Star} where RIdx = #{RIdx}")
     public int editById(ReviewDTO rDto);
+
+    //이메일로 조회
+    @Select("select * from jelly_review where Email=#{email}")
+    public List<ReviewDTO> myReviewFindAll(String email);
 }

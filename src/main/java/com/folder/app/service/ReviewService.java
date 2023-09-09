@@ -33,4 +33,9 @@ public class ReviewService {
         uDao.editById(rDto);
         return "후기가 수정되었습니다.";
     }
+
+    // 후기 이메일 조회
+    public Object myReviewFindAll(String email){
+        return uDao.myReviewFindAll(email);
+    }
 }

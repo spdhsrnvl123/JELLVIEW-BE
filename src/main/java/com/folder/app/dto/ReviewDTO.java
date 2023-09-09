@@ -12,4 +12,5 @@ public class ReviewDTO {
     private Integer JIdx;
     private Integer Star; //후기수정 가능
     private Date Created_at;
+    private String Email;
 }

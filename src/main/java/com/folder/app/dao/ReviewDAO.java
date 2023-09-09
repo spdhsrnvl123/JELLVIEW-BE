@@ -12,25 +12,32 @@ import com.folder.app.mapper.ReviewMapper;
 
 @Repository
 public class ReviewDAO {
-    @Autowired ReviewMapper rMapper;
+    @Autowired
+    ReviewMapper rMapper;
 
-    public Object save(ReviewDTO rDto){
+    public Object save(ReviewDTO rDto) {
         System.out.println(rDto);
         return rMapper.save(rDto);
     }
 
-    public List<ReviewDTO> jellyFindAll(){
+    public List<ReviewDTO> jellyFindAll() {
         return rMapper.reviewFindAll();
     }
 
-    public int delete(int id){
+    public int delete(int id) {
         return rMapper.delete(id);
     }
 
-    public Object editById(ReviewDTO rDto){
-    System.out.println(rDto);
-    return rMapper.editById(rDto);
-    // return null;
+    public Object editById(ReviewDTO rDto) {
+        System.out.println(rDto);
+        return rMapper.editById(rDto);
     }
+
+    public List<ReviewDTO> myReviewFindAll(String email){
+        // System.out.println(email);
+        return rMapper.myReviewFindAll(email);
+        // return null;
+    }
+
 
 }

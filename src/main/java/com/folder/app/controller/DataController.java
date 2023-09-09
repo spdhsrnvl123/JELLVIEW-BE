@@ -52,7 +52,7 @@ public class DataController {
     // 후기저장
     @PostMapping("/save")
     public String save(@RequestBody ReviewDTO rDto) {
-        // System.out.println(rDto);
+        System.out.println(rDto);
         return rService.save(rDto);
     }
 
@@ -61,6 +61,14 @@ public class DataController {
     public Object reviewFindAll() {
         return rService.reviewFindAll();
     }
+
+    // 후기 이메일 조회
+    @GetMapping("/review/{email}")
+    public Object myReviewFindAll(@PathVariable(name="email") String email){
+        // System.out.println(email);
+        return rService.myReviewFindAll(email);
+    }
+
 
     // 후기삭제
     @DeleteMapping("/delete")
@@ -122,7 +130,7 @@ public class DataController {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "Bearer " + token);
         headers.add("Content-type",
-                "application/x-www-form-urlencoded;charset=utf-8");
+        "application/x-www-form-urlencoded;charset=utf-8");
 
         // HttpHeader와 HttpBody를 하나의 오브젝트에 담기
         // 왜 요기에 담냐면 exchange라는 함수가 HttpEntity라는 오브젝트를 넣게 되어 있다.
@@ -162,70 +170,13 @@ public class DataController {
     kakaoInfo.setNickname(nickname);
     kakaoInfo.setProfile_img(profile_img);
 
-    // System.out.println(kakaoInfo);
-
-    // System.out.println("이메일 : " + email);
-    // System.out.println("이름 : " + nickname);
-    // System.out.println("프로필 이미지 : " + profile_img);
-    
-
     if(kakaoService.findInfo(kakaoInfo) == 0){
-        System.out.println("데이터베이스 저장된 정보가 없어요 저장하고 유저정보 줄게요");
+        System.out.println("데이터베이스 저장된 정보가 없어요 저장하고 유저정보줄게요");
         kakaoService.save(kakaoInfo);
         return kakaoInfo;
     }else{
         System.out.println("데이터베이스 회원정보가 있네요 유저저정보 줄게요!");
         return kakaoInfo;
     }
-     // return kakaoProfile;
     }
 }
-/*
-    // ----
-
-    /* (카카오 로그인) */
-    // 프론트에서 인가코드 받아오기
-
-    /*
-     * // Gson, Json Simple, ObjectMapper
-     * ObjectMapper objectMapper = new ObjectMapper();
-     * OAuthToken oauthToken = null;
-     * try {
-     * oauthToken = objectMapper.readValue(response.getBody(), OAuthToken.class);
-     * } catch (JsonMappingException e) {
-     * e.printStackTrace();
-     * } catch (JsonProcessingException e) {
-     * e.printStackTrace();
-     * } // OAuthToken.class response.getBody()를 넣어준다.
-     * 
-     * System.out.println("카카오 엑세스 토큰" + oauthToken.getAccess_token());
-     * 
-     * String access_token = oauthToken.getAccess_token();
-     * // System.out.println(access_token);
-     * 
-     * // ---------------------------------------------user정보 요청
-     * 
-     * // HttpHeader 오브젝트 생성
-     * RestTemplate rt2 = new RestTemplate();
-     * 
-     * HttpHeaders headers2 = new HttpHeaders();
-     * headers2.add("Authorization", "Bearer " + oauthToken.getAccess_token());
-     * headers2.add("Content-type",
-     * "application/x-www-form-urlencoded;charset=utf-8");
-     * 
-     * // HttpHeader와 HttpBody를 하나의 오브젝트에 담기
-     * // 왜 요기에 담냐면 exchange라는 함수가 HttpEntity라는 오브젝트를 넣게 되어 있다.
-     * HttpEntity<MultiValueMap<String, String>> kakaoProfileRequest2 = new
-     * HttpEntity<>(headers2);
-     * 
-     * // Http요청하기 - Post방식으로 - 그리고 response 변수의 응답 받음.
-     * ResponseEntity<String> response2 = rt2.exchange(
-     * "https://kapi.kakao.com/v2/user/me",
-     * HttpMethod.POST,
-     * kakaoProfileRequest2, // HttpEntity오브젝트
-     * String.class);
-     * 
-     * // --------------------------------------------------
-     }
-}
-*/
