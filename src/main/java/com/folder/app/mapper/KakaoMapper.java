@@ -15,6 +15,6 @@ public interface KakaoMapper {
     public int save(KakaoInfo kakaoInfo);
 
     //조회
-    @Select("select COUNT(*) from jelly_user where Email = #{email}")
+    @Select("select COUNT(Email) from jelly_user where Email = #{email}")
     public int findInfo(KakaoInfo kakaoInfo);
 }

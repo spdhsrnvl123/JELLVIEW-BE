@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.folder.app.dto.KakaoInfo;
-import com.folder.app.dto.KakaoProfile;
 import com.folder.app.mapper.KakaoMapper;
 
 @Repository

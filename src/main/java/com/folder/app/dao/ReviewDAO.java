@@ -1,6 +1,7 @@
 package com.folder.app.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -39,5 +40,9 @@ public class ReviewDAO {
         // return null;
     }
 
-
+    public List<ReviewDTO> pagingList(Map<String, Integer> pagingParams){
+        System.out.println(pagingParams);
+        return rMapper.pagingList(pagingParams);
+        // return null;
+    }
 }

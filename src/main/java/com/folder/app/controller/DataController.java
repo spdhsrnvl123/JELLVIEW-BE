@@ -1,5 +1,7 @@
 package com.folder.app.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -32,6 +34,8 @@ import com.folder.app.mapper.KakaoMapper;
 import com.folder.app.service.JellyService;
 import com.folder.app.service.KakaoService;
 import com.folder.app.service.ReviewService;
+
+import ch.qos.logback.core.model.Model;
 
 @CrossOrigin(origins = "http://localhost:5001")
 @RestController
@@ -69,7 +73,6 @@ public class DataController {
         return rService.myReviewFindAll(email);
     }
 
-
     // 후기삭제
     @DeleteMapping("/delete")
     public Object delete(@RequestParam(name = "id") int id) {
@@ -82,6 +85,17 @@ public class DataController {
     public String editById(@RequestBody ReviewDTO rDto) {
         System.out.println(rDto);
         return rService.editById(rDto);
+    }
+
+    //페이징 중
+    @GetMapping("/paging")
+    public String paging(Model model, @RequestParam(value="page", required = false, defaultValue = "1") int page){
+        System.out.println("page = " + page);
+        //해당 페이지에서 보여줄 글 목록
+        List<ReviewDTO> pagingList = rService.pagingList(page);
+        System.out.println(pagingList);
+        return "출력되었습니다.";
+        // return null;
     }
 
     @Autowired
@@ -180,3 +194,4 @@ public class DataController {
     }
     }
 }
+
