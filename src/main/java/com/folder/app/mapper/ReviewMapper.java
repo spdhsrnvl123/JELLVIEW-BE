@@ -2,14 +2,11 @@ package com.folder.app.mapper;
 
 import java.util.List;
 import java.util.Map;
-
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.springframework.web.bind.annotation.PostMapping;
-
 import com.folder.app.dto.ReviewDTO;
 
 @Mapper
@@ -18,7 +15,7 @@ public interface ReviewMapper {
     @Insert("insert into jelly_review (Title, Content, JIdx, Star, Email) value (#{Title},#{Content},#{JIdx},#{Star},#{Email})")
     public int save(ReviewDTO rDto);
 
-    //조회
+    //조회(*사용X)
     @Select("select * from jelly_review")
     public List<ReviewDTO> reviewFindAll();
 
@@ -37,6 +34,5 @@ public interface ReviewMapper {
     // 페이징
     @Select("select * from jelly_review order by ridx desc limit #{start}, ${limit}")
     public List<ReviewDTO> pagingList(Map<String, Integer> pagingParams);
-
 
 }

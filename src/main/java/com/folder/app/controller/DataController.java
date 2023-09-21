@@ -28,7 +28,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.folder.app.dto.JellyResultDTO;
 import com.folder.app.dto.KakaoInfo;
 import com.folder.app.dto.KakaoProfile;
-import com.folder.app.dto.OAuthToken;
+// import com.folder.app.dto.OAuthToken;
 import com.folder.app.dto.ReviewDTO;
 import com.folder.app.mapper.KakaoMapper;
 import com.folder.app.service.JellyService;
